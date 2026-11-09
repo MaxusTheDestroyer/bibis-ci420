@@ -60,7 +60,7 @@ class VerlaengerungsServiceTest {
     @Test
     void fragtDatenbankNichtWennMaximumErreicht() throws Exception {
         // Arrange: Ausleihe ohne Vormerkung, dreimal erlaubt verlängern
-        Ausleihe ausleihe = new Ausleihe("T-4711", LocalDate.of(2026, 11, 2));
+        Ausleihe ausleihe = new Ausleihe("T-4711", LocalDate.of(2026, 11, 9));
         when(vormerkungen.existiertVormerkung("T-4711")).thenReturn(false);
         service.verlaengere(ausleihe);
         service.verlaengere(ausleihe);
@@ -89,7 +89,7 @@ class VerlaengerungsServiceTest {
 
         // Assert
         // Lösung – zwingend: das Ergebnis prüfen
-        assertEquals(LocalDate.of(2026, 11, 30), neu);
+        assertEquals(LocalDate.of(2026, 11, 23), neu);
         assertEquals(1, ausleihe.getAnzahlVerlaengerungen());
         // Lösung – ergänzend: den Aufruf prüfen
         verify(vormerkungen).existiertVormerkung("T-4711");
